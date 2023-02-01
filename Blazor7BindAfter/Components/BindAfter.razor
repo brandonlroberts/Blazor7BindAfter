@@ -1,0 +1,18 @@
+﻿<input @bind="_resultText" @bind:event="oninput" @bind:after="PerformSearch" />
+
+@code {
+    [Parameter] public string? OriginalText { get; set; }
+    [Parameter] public EventCallback<string?> AdditionalTextBack { get; set; }
+    string? _originalText { get; set; }
+    string? _resultText { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _originalText = $"{OriginalText}:Initialized - ";
+    }
+
+    async Task PerformSearch()
+    {
+        await AdditionalTextBack.InvokeAsync($"{_originalText}@bind:after - Resulting additional text: {_resultText}");
+    }
+}

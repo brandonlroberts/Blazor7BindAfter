@@ -1,0 +1,17 @@
+﻿@page "/"
+<BindAfter OriginalText="@SubmissionText" AdditionalTextBack="HandleAdditionalTextBackCallback"/>
+<br/>
+Original submission: @SubmissionText
+<br/>
+Post bind:after text: @PostSetText
+
+@code {
+    private static string? SubmissionText => "Original";
+    private string? PostSetText { get; set; }
+
+    private void HandleAdditionalTextBackCallback(string? result)
+    {
+        PostSetText = result;
+    }
+
+}
